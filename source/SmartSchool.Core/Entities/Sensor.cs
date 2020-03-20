@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace SmartSchool.Core.Entities
 {
@@ -15,5 +17,9 @@ namespace SmartSchool.Core.Entities
         public string Unit { get; set; }
         public ICollection<Measurement> Measurements { get; set; }
 
+        public override string ToString()
+        {
+            return $"{Location,20:c}|{Name,20:c}|          Average Value: {Math.Round(Measurements.Average(m => m.Value), 2),5}";
+        }
     }
 }
